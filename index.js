@@ -72,12 +72,23 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-// Health check endpoint
-app.get('/health', (req, res) => {
-  res.status(200).json({ status: 'ok' });
+// Root route for health check
+app.get('/', (req, res) => {
+  res.status(200).json({ 
+    status: 'success',
+    message: 'FeelWell API is running'
+  });
 });
 
-// API Routes
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({ 
+    status: 'ok',
+    timestamp: new Date().toISOString()
+  });
+});
+
+// API Routes - All routes are prefixed with /api
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/moods', moodRoutes);
@@ -85,10 +96,8 @@ app.use('/api/tasks', taskRoutes);
 app.use('/api/ai', aiRoutes);
 
 // Error handling
-app.use(errorHandler);
-
-// 404 handler
 app.use(notFound);
+app.use(errorHandler);
 
 // Start server
 const PORT = process.env.PORT || 5000;
