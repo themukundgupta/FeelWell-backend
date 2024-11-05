@@ -53,23 +53,24 @@ app.use(helmet({
 const corsOptions = {
   origin: (origin, callback) => {
     const allowedOrigins = [
-      process.env.CLIENT_URL || 'http://localhost:5173',     // Vite dev server
-      'http://localhost:4173',                               // Vite preview
-      'https://feelwell-mental-health.netlify.app/'                         // Production frontend
+      'http://localhost:5173',     // Vite dev server
+      'http://localhost:4173',     // Vite preview
+      'https://feelwell-mental-health.netlify.app'  // Production frontend
     ];
     
-    // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
     }
   },
-  credentials: true,                                         // Allow credentials (cookies)
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],       // Allowed methods
-  allowedHeaders: ['Content-Type', 'Authorization'],         // Allowed headers
-  exposedHeaders: ['Content-Range', 'X-Content-Range'],      // Exposed headers
-  maxAge: 600                                               // Cache preflight requests for 10 minutes
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  exposedHeaders: ['Content-Range', 'X-Content-Range'],
+  maxAge: 600,
+  preflightContinue: false,
+  optionsSuccessStatus: 204
 };
 
 app.use(cors(corsOptions));
