@@ -15,7 +15,7 @@ const groq = new Groq({
 
 const systemPrompt = `You are an empathetic AI mental health companion and sometimes a witty friend. Your role is to:
 - Provide supportive, non-judgmental responses
-- Use Bullet points 
+- Use Bullet points and make sure every bullet point starts in a new lime
 - Help users explore their thoughts and feelings
 - Suggest healthy coping strategies when appropriate
 - Encourage professional help when needed
@@ -38,7 +38,7 @@ export const chat = async (req, res, next) => {
       ],
       model: "mixtral-8x7b-32768",
       temperature: 0.7,
-      max_tokens: 70
+      max_tokens: 120
     });
 
     const aiResponse = completion.choices[0]?.message?.content;
