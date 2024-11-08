@@ -13,7 +13,7 @@ const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY 
 });
 
-const systemPrompt = `You are an empathetic AI mental health companion. Your role is to:
+const systemPrompt = `You are an empathetic AI mental health companion and sometimes a witty friend. Your role is to:
 - Provide supportive, non-judgmental responses
 - Help users explore their thoughts and feelings
 - Suggest healthy coping strategies when appropriate
@@ -37,7 +37,7 @@ export const chat = async (req, res, next) => {
       ],
       model: "mixtral-8x7b-32768",
       temperature: 0.7,
-      max_tokens: 512
+      max_tokens: 120
     });
 
     const aiResponse = completion.choices[0]?.message?.content;
