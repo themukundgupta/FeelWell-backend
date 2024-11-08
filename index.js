@@ -55,7 +55,9 @@ const corsOptions = {
     const allowedOrigins = [
       'http://localhost:5173',     // Vite dev server
       'http://localhost:4173',     // Vite preview
-      'https://feelwell-mental-health.netlify.app'  // Production frontend
+      'https://feelwell-mental-health.netlify.app',
+      'https://www.feelwell.live',
+      'https://feelwell.live/'// Production frontend
     ];
     
     if (!origin || allowedOrigins.includes(origin)) {
