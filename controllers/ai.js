@@ -37,7 +37,7 @@ export const chat = async (req, res, next) => {
       ],
       model: "mixtral-8x7b-32768",
       temperature: 0.7,
-      max_tokens: 120
+      max_tokens: 35
     });
 
     const aiResponse = completion.choices[0]?.message?.content;
